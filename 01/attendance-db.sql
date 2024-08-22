@@ -58,4 +58,3 @@ INSERT INTO attendance (person_id, date, attendance) VALUES (3, '2024-09-05', fa
 INSERT INTO attendance (person_id, date, attendance) VALUES (4, '2024-09-05', false);
 INSERT INTO attendance (person_id, date, attendance) VALUES (5, '2024-09-05', true);
 
-SELECT person.lastname, person.firstname, attendance.date FROM person JOIN attendance ON(person.id = attendance.person_id) WHERE attendance.attendance = false;

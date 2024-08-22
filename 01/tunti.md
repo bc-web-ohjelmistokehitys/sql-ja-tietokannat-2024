@@ -82,4 +82,6 @@ SELECT person.lastname, person.firstname, attendance.date, attendance.attendance
 
 SELECT person.lastname, person.firstname, COUNT(attendance.attendance) FROM person JOIN attendance ON(person.id = attendance.person_id) WHERE attendance.attendance = false GROUP BY(person.lastname, person.firstname) ORDER BY lastname, firstname;
 
+SELECT person.lastname, person.firstname, attendance.date FROM person JOIN attendance ON(person.id = attendance.person_id) WHERE attendance.attendance = false;
+
 ```
