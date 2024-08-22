@@ -1,5 +1,18 @@
 # Tunti 01 / 08
 
+## Keskustelu
+
+Puhuttiin tietokannoista, SQL-"standardista" ja implementaatioista.
+
+- mysql / mariadb (historia)
+- postgresql
+- muut "esoteerisemmat"
+
+## Postgresql dokkarit
+
+- https://www.postgresql.org
+- https://www.postgresql.org/docs/16/index.html
+
 ## Asenna PostgreSQL (16 tai tuorein)
 
 - `brew install postgresql@16`
