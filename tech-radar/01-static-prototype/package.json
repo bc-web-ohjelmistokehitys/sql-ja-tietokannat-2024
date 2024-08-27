@@ -1,0 +1,27 @@
+{
+  "name": "dr-kobros-tech-radar",
+  "version": "2024.1.0",
+  "description": "Visualizing our technology choices",
+  "license": "MIT",
+  "private": true,
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.2",
+    "eslint": "^8.52.0",
+    "eslint-plugin-html": "^7.1.0",
+    "socket.io": "^4.7.2"
+  },
+  "scripts": {
+    "start": "browser-sync public -w",
+    "lint": "npm run lint:js && npm run lint:html",
+    "lint:js": "eslint docs/*.js",
+    "lint:html": "eslint docs/*.html"
+  },
+  "dependencies": {
+    "csv-parse": "^5.5.6",
+    "ramda": "^0.30.1"
+  },
+  "packageManager": "pnpm@9.9.0+sha512.60c18acd138bff695d339be6ad13f7e936eea6745660d4cc4a776d5247c540d0edee1a563695c183a66eb917ef88f2b4feb1fc25f32a7adcadc7aaf3438e99c1"
+}
