@@ -14,13 +14,18 @@ const ringMap = {
   Hold: 3,
 };
 
-export const rowMapper = (row) => {
+/**
+ * Maps a row to a tech object.
+ * @param {Object} row The db row to map
+ * @returns {Object} The radar
+ * @throws {Error} If the row is invalid.
+ */
+export function rowMapper(row) {
   if (
-    ringMap[row.ring] === undefined ||
-    quadrantMap[row.quadrant] === undefined
+    typeof ringMap[row.ring] === "undefined" ||
+    typeof quadrantMap[row.quadrant] === "undefined"
   ) {
-    console.log("ERROR: ", row);
-    return;
+    throw new Error("Invalid ring or quadrant");
   }
 
   return {
@@ -30,9 +35,14 @@ export const rowMapper = (row) => {
     active: true,
     moved: 0,
   };
-};
+}
 
-export const createRadar = (rows) => {
+/**
+ * Creates a radar from the given rows.
+ * @param {Array} rows The rows to create the radar from.
+ * @returns {Object} The radar.
+ */
+export function createRadar(rows) {
   const techs = rows.map((row) => rowMapper(row));
 
   const inversed = R.reverse(techs);
@@ -45,4 +55,4 @@ export const createRadar = (rows) => {
   };
 
   return ret;
-};
+}

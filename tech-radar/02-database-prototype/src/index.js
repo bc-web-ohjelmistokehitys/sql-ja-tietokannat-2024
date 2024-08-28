@@ -1,23 +1,20 @@
+import "dotenv/config";
 import Fastify from "fastify";
 import fastifyStatic from "@fastify/static";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import path from "path";
+import path from "node:path";
 import pg from "pg";
 import { createRadar } from "./utils.js";
 
-console.log("wait for the database to connect");
-
 const { Client } = pg;
-const client = new Client({
-  database: "techradar",
-});
+const client = new Client();
 await client.connect();
 
-console.log("database is ready");
-
+/* eslint-disable-next-line no-underscore-dangle -- because convention */
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+/* eslint-disable-next-line new-cap -- because fastify */
 const fastify = Fastify({
   logger: true,
 });
@@ -27,7 +24,7 @@ fastify.register(fastifyStatic, {
   index: "index.html",
 });
 
-fastify.get("/config.json", async function handler(request, reply) {
+fastify.get("/config.json", async () => {
   const { rows } = await client.query("SELECT tech, quadrant, ring FROM radar");
 
   return createRadar(rows);
@@ -37,5 +34,5 @@ try {
   await fastify.listen({ port: 3000 });
 } catch (err) {
   fastify.log.error(err);
-  process.exit(1);
+  throw err;
 }
