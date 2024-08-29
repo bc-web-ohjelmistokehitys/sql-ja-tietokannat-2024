@@ -25,6 +25,7 @@ fastify.register(fastifyStatic, {
 });
 
 fastify.get("/config.json", async () => {
+  // TODO: fix this seriously XXX-555
   const { rows } = await client.query("SELECT tech, quadrant, ring FROM radar");
 
   return createRadar(rows);
