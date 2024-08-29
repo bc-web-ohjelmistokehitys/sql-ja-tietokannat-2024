@@ -33,6 +33,7 @@ Tätä osiota varten pitää pystyttää ja nostaa pystyyn `postgresql` ja `node
   - "Tosielämässä" käytetään NVM:n kaltaista työkalua:
     - https://nodejs.org/en/download/package-manager
   - `brew install node` toimii myös, mutta JOMPI KUMPI, ei kumpaakin. Yhdessä ne toimivat... kehnonlaisesti!
+  - [PNPM](https://pnpm.io/) on paketinhallintaohjelmisto, sama kuin npm, mutta parempi. On olemassa (me emme käytä sitä) myös [Yarn](https://yarnpkg.com/). npm, pnpm ja yarn hakevat pakettinsa samasta paikasta, ja `package.json` on kaikkien osalta olennainen tiedosto, missä käytettävät paketit määritetään. Tämä tiedosto sijaitsee aina JavaScriptillä (tai TypeScriptillä) tehdyn ohjelmistoprojektin juuressa.
 
 ### Staattinen POC
 
