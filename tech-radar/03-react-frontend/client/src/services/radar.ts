@@ -475,11 +475,11 @@ export function radar_visualization(conf: RadarConfiguration) {
           .text((d, i) => `${d.id}. ${d.label}`)
           .style("font-family", config.font_family)
           .style("font-size", "11px")
-          .on("mouseover", (d) => {
+          .on("mouseover", (e, d) => {
             showBubble(d);
             highlightLegendItem(d);
           })
-          .on("mouseout", (d) => {
+          .on("mouseout", (e, d) => {
             hideBubble(d);
             unhighlightLegendItem(d);
           });
@@ -569,11 +569,11 @@ export function radar_visualization(conf: RadarConfiguration) {
     .append("g")
     .attr("class", "blip")
     .attr("transform", (d, i) => legend_transform(d.quadrant, d.ring, i))
-    .on("mouseover", (d) => {
+    .on("mouseover", (e, d) => {
       showBubble(d);
       highlightLegendItem(d);
     })
-    .on("mouseout", (d) => {
+    .on("mouseout", (e, d) => {
       hideBubble(d);
       unhighlightLegendItem(d);
     });

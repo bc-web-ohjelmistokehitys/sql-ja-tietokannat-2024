@@ -1,6 +1,5 @@
 import * as R from "ramda";
 import { DateTime } from "luxon";
-// import random from "./random.js";
 
 /* map quadrant string names to quadrant number */
 const quadrantMap = {
