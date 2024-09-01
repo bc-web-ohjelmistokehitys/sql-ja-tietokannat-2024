@@ -1,0 +1,4 @@
+node_modules/
+public/config.json
+radar.csv
+.env
