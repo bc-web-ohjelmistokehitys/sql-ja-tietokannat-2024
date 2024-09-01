@@ -1,5 +1,8 @@
 import * as R from "ramda";
+import { DateTime } from "luxon";
+// import random from "./random.js";
 
+/* map quadrant string names to quadrant number */
 const quadrantMap = {
   Programming: 0,
   Databases: 2,
@@ -7,6 +10,7 @@ const quadrantMap = {
   Tools: 1,
 };
 
+/* map ring string names to ring number */
 const ringMap = {
   Adopt: 0,
   Trial: 1,
@@ -34,6 +38,8 @@ export function rowMapper(row) {
     label: row.tech,
     active: true,
     moved: 0,
+    link: `#`,
+    // moved: random.pick([-1, 0, 1, 2]),
   };
 }
 
@@ -49,8 +55,24 @@ export function createRadar(rows) {
   const deduped = R.uniqBy(R.prop("label"), inversed);
   const filtered = deduped.filter((tech) => tech);
 
+  const now = DateTime.utc();
+
   const ret = {
-    date: "2024.08",
+    id: 1,
+    date: now.toISO(),
+    title: "Dr. Kobros Tech Radar",
+    quadrants: [
+      { name: "Languages & Frameworks" },
+      { name: "Tools & Techniques" },
+      { name: "Datastores" },
+      { name: "Platforms" },
+    ],
+    rings: [
+      { name: "ADOPT", color: "#5ba300" },
+      { name: "TRIAL", color: "#009eb0" },
+      { name: "ASSESS", color: "#c7ba00" },
+      { name: "HOLD", color: "#e09b96" },
+    ],
     entries: filtered,
   };
 

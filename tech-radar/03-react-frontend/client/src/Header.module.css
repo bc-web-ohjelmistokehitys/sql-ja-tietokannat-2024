@@ -1,0 +1,9 @@
+.header {
+  margin-block-start: 0;
+  margin-block-end: 1em;
+  padding: 1em;
+}
+
+.heading {
+  margin-block: 0;
+}

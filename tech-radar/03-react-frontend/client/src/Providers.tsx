@@ -1,6 +1,7 @@
 import { FC, ReactNode, useRef } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ErrorBoundary } from "react-error-boundary";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 type Props = {
   children: ReactNode;
@@ -21,6 +22,7 @@ const Providers: FC<Props> = ({ children }) => {
     >
       <QueryClientProvider client={client.current}>
         {children}
+        <ReactQueryDevtools initialIsOpen={false} position="right" />
       </QueryClientProvider>
     </ErrorBoundary>
   );

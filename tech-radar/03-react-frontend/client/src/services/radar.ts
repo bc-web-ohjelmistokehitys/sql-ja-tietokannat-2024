@@ -1,42 +1,81 @@
 import ky from "ky";
 import * as d3 from "d3";
 
-type RadarEntry = {};
+export type RadarEntry = {
+  quadrant: 1 | 2 | 3 | 4;
+  ring: 1 | 2 | 3 | 4;
+};
 
-type RadarData = {
+export type Quadrant = {
+  name: string;
+};
+
+export type Ring = {
+  name: string;
+  color: string;
+};
+
+type RadarConfiguration = {
+  entries: RadarEntry[];
+  width?: number;
+  height?: number;
+  svg_id: string;
+  colors?: {
+    background: string;
+    grid: string;
+    inactive: string;
+  };
+  print_layout?: boolean;
+  links_in_new_tabs?: boolean;
+  repo_url?: string;
+  print_ring_descriptions_table?: boolean;
+  scale?: number;
+  font_family?: string;
+  title: string;
+  date?: string;
+  quadrants: Quadrant[];
+  rings: Ring[];
+};
+
+type RadarDefinition = NonNullable<RadarConfiguration>;
+
+export type RadarData = {
+  title: string;
   date: string;
+  quadrants: Quadrant[];
+  rings: Ring[];
   entries: RadarEntry[];
 };
 
 export const getRadarData = async (): Promise<RadarData> => {
-  console.log(import.meta.env);
   return ky.get<RadarData>(`${import.meta.env.VITE_API}/config.json`).json();
+};
+
+const getRadarDefinition = (config: RadarConfiguration): RadarDefinition => {
+  const conf = {
+    width: 1450,
+    height: 1000,
+    colors: {
+      background: "#fff",
+      grid: "#dddde0",
+      inactive: "#ddd",
+    },
+    print_layout: true,
+    links_in_new_tabs: true,
+    repo_url: "#",
+    ring_descriptions_table: false,
+    ...config,
+  };
+
+  return conf;
 };
 
 /**
  *
  * @param config
  */
-export function radar_visualization(config) {
-  config.svg_id = config.svg || "radar";
-  config.width = config.width || 1450;
-  config.height = config.height || 1000;
-  config.colors =
-    "colors" in config
-      ? config.colors
-      : {
-          background: "#fff",
-          grid: "#dddde0",
-          inactive: "#ddd",
-        };
-  config.print_layout = "print_layout" in config ? config.print_layout : true;
-  config.links_in_new_tabs =
-    "links_in_new_tabs" in config ? config.links_in_new_tabs : true;
-  config.repo_url = config.repo_url || "#";
-  config.print_ring_descriptions_table =
-    "print_ring_descriptions_table" in config
-      ? config.print_ring_descriptions_table
-      : false;
+export function radar_visualization(conf: RadarConfiguration) {
+  const config = getRadarDefinition(conf);
 
   // custom random number generator, to make random sequence reproducible
   // source: https://stackoverflow.com/questions/521295
@@ -265,7 +304,7 @@ export function radar_visualization(config) {
   const scaled_height = config.height * config.scale;
 
   const svg = d3
-    .select(`svg#${config.svg_id}`)
+    .select(`svg#${CSS.escape(config.svg_id)}`)
     .style("background-color", config.colors.background)
     .attr("width", scaled_width)
     .attr("height", scaled_height);
