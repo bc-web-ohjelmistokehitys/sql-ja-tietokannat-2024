@@ -29,15 +29,16 @@ type RadarConfiguration = {
   links_in_new_tabs?: boolean;
   repo_url?: string;
   print_ring_descriptions_table?: boolean;
-  scale?: number;
-  font_family?: string;
+  scale: number;
   title: string;
-  date?: string;
+  date: string;
   quadrants: Quadrant[];
   rings: Ring[];
 };
 
-type RadarDefinition = NonNullable<RadarConfiguration>;
+type RadarDefinition = Required<RadarConfiguration> & {
+  font_family: string;
+};
 
 export type RadarData = {
   title: string;
@@ -45,6 +46,7 @@ export type RadarData = {
   quadrants: Quadrant[];
   rings: Ring[];
   entries: RadarEntry[];
+  url: string;
 };
 
 export const getRadarData = async (): Promise<RadarData> => {
@@ -52,7 +54,7 @@ export const getRadarData = async (): Promise<RadarData> => {
 };
 
 const getRadarDefinition = (config: RadarConfiguration): RadarDefinition => {
-  const conf = {
+  const conf: RadarDefinition = {
     width: 1450,
     height: 1000,
     colors: {
@@ -63,7 +65,10 @@ const getRadarDefinition = (config: RadarConfiguration): RadarDefinition => {
     print_layout: true,
     links_in_new_tabs: true,
     repo_url: "#",
-    ring_descriptions_table: false,
+    print_ring_descriptions_table: false,
+    // define default font-family
+    font_family: "Arial, Helvetica",
+
     ...config,
   };
 
@@ -93,7 +98,7 @@ export function radar_visualization(conf: RadarConfiguration) {
    * @param min
    * @param max
    */
-  function random_between(min, max) {
+  function random_between(min: number, max: number) {
     return min + random() * (max - min);
   }
 
@@ -102,7 +107,7 @@ export function radar_visualization(conf: RadarConfiguration) {
    * @param min
    * @param max
    */
-  function normal_between(min, max) {
+  function normal_between(min: number, max: number) {
     return min + (random() + random()) * 0.5 * (max - min);
   }
 
@@ -136,7 +141,7 @@ export function radar_visualization(conf: RadarConfiguration) {
    *
    * @param cartesian
    */
-  function polar(cartesian) {
+  function polar(cartesian: { x: number; y: number }) {
     const x = cartesian.x;
     const y = cartesian.y;
     return {
@@ -149,7 +154,7 @@ export function radar_visualization(conf: RadarConfiguration) {
    *
    * @param polar
    */
-  function cartesian(polar) {
+  function cartesian(polar: { t: number; r: number }) {
     return {
       x: polar.r * Math.cos(polar.t),
       y: polar.r * Math.sin(polar.t),
@@ -162,7 +167,7 @@ export function radar_visualization(conf: RadarConfiguration) {
    * @param min
    * @param max
    */
-  function bounded_interval(value, min, max) {
+  function bounded_interval(value: number, min: number, max: number) {
     const low = Math.min(min, max);
     const high = Math.max(min, max);
     return Math.min(Math.max(value, low), high);
@@ -323,9 +328,6 @@ export function radar_visualization(conf: RadarConfiguration) {
 
   const grid = radar.append("g");
 
-  // define default font-family
-  config.font_family = config.font_family || "Arial, Helvetica";
-
   // draw grid lines
   grid
     .append("line")
@@ -406,6 +408,7 @@ export function radar_visualization(conf: RadarConfiguration) {
     // title
     radar
       .append("a")
+      .attr("target", "_blank")
       .attr("href", config.repo_url)
       .attr("transform", translate(title_offset.x, title_offset.y))
       .append("text")
@@ -643,59 +646,4 @@ export function radar_visualization(conf: RadarConfiguration) {
     .velocityDecay(0.19) // magic number (found by experimentation)
     .force("collision", d3.forceCollide().radius(12).strength(0.85))
     .on("tick", ticked);
-
-  /**
-   *
-   */
-  function ringDescriptionsTable() {
-    const table = d3
-      .select("body")
-      .append("table")
-      .attr("class", "radar-table")
-      .style("border-collapse", "collapse")
-      .style("margin-top", "20px")
-      .style("margin-left", "50px")
-      .style("margin-right", "50px")
-      .style("font-family", config.font_family)
-      .style("font-size", "13px")
-      .style("text-align", "left");
-
-    const thead = table.append("thead");
-    const tbody = table.append("tbody");
-
-    // define fixed width for each column
-    const columnWidth = `${100 / config.rings.length}%`;
-
-    // create table header row with ring names
-    const headerRow = thead.append("tr").style("border", "1px solid #ddd");
-
-    headerRow
-      .selectAll("th")
-      .data(config.rings)
-      .enter()
-      .append("th")
-      .style("padding", "8px")
-      .style("border", "1px solid #ddd")
-      .style("background-color", (d) => d.color)
-      .style("color", "#fff")
-      .style("width", columnWidth)
-      .text((d) => d.name);
-
-    // create table body row with descriptions
-    const descriptionRow = tbody.append("tr").style("border", "1px solid #ddd");
-
-    descriptionRow
-      .selectAll("td")
-      .data(config.rings)
-      .enter()
-      .append("td")
-      .style("padding", "8px")
-      .style("border", "1px solid #ddd")
-      .style("width", columnWidth)
-      .text((d) => d.description);
-  }
-
-  if (config.print_ring_descriptions_table) {
-    ringDescriptionsTable();
-  }
 }

@@ -78,6 +78,7 @@ export async function createRadar(client) {
       { name: "HOLD", color: "#e09b96" },
     ],
     entries: filtered,
+    url: "https://dr-kobros.com",
   };
 
   return ret;

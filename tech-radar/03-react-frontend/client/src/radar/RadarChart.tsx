@@ -30,7 +30,7 @@ const RadarChart: FC<Props> = ({ data }) => {
     radar_visualization({
       svg_id: id,
       scale,
-      repo_url: "https://github.com/dr-kobros/tech-radar",
+      repo_url: data.url,
       title: data.title,
       date: data.date,
       quadrants: data.quadrants,
