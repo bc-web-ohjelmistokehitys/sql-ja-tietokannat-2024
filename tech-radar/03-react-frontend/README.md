@@ -10,8 +10,8 @@
 - `pnpm i`
   - If corepack asks you whether it's ok to download something, yes yes.
 - `cp server/.env.example server/.env`
-- `cp client/.env.local.example server/.env.local`
-- `pnpm run start`
+- `cp client/.env.local.example client/.env.local`
+- `pnpm run dev`
 
 If the browser doesn't open automatically when you run the last command, surf to http://localhost:3000/
 

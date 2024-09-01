@@ -48,7 +48,7 @@ export type RadarData = {
 };
 
 export const getRadarData = async (): Promise<RadarData> => {
-  return ky.get<RadarData>(`${import.meta.env.VITE_API}/config.json`).json();
+  return ky.get<RadarData>(`${import.meta.env.VITE_API}/radar.json`).json();
 };
 
 const getRadarDefinition = (config: RadarConfiguration): RadarDefinition => {

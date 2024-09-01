@@ -13,8 +13,7 @@ const Providers: FC<Props> = ({ children }) => {
   return (
     <ErrorBoundary
       fallbackRender={({ error }) => {
-        console.log(error);
-
+        console.error(error);
         return (
           <div>Something went terribly wrong. Please refresh the page.</div>
         );

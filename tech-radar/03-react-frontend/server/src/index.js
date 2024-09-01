@@ -2,7 +2,7 @@ import "dotenv/config";
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 import pg from "pg";
-import { createRadar } from "./utils.js";
+import { createRadar } from "./radar.js";
 
 const { Client } = pg;
 const client = new Client();
@@ -14,14 +14,14 @@ const server = Fastify({
 });
 
 await server.register(cors, {
-  // put your options here
+  // CORS (google this!) options here.
 });
 
 server.get("/", async () => ({ hello: "world" }));
 
-server.get("/config.json", async () => {
-  const { rows } = await client.query("SELECT tech, quadrant, ring FROM radar");
-  return createRadar(rows);
+server.get("/radar.json", async () => {
+  const radar = await createRadar(client);
+  return radar;
 });
 
 try {

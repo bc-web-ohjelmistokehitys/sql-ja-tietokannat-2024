@@ -24,7 +24,7 @@ const ringMap = {
  * @returns {Object} The radar
  * @throws {Error} If the row is invalid.
  */
-export function rowMapper(row) {
+function rowMapper(row) {
   if (
     typeof ringMap[row.ring] === "undefined" ||
     typeof quadrantMap[row.quadrant] === "undefined"
@@ -45,10 +45,15 @@ export function rowMapper(row) {
 
 /**
  * Creates a radar from the given rows.
- * @param {Array} rows The rows to create the radar from.
+ * @param {import("pg").Client} client Database client
  * @returns {Object} The radar.
  */
-export function createRadar(rows) {
+export async function createRadar(client) {
+  const { rows } = await client.query("SELECT tech, quadrant, ring FROM radar");
+
+  /* eslint-disable-next-line no-console -- because we want to see. */
+  console.log("techs from db", rows);
+
   const techs = rows.map((row) => rowMapper(row));
 
   const inversed = R.reverse(techs);

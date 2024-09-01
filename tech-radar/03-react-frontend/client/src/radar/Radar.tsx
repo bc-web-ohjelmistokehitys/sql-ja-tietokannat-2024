@@ -23,7 +23,9 @@ const Radar: FC = () => {
   if (error) {
     return (
       <>
-        <Spinner /> Error loading data. Open developer tools and debug.
+        <Spinner /> Error loading data. Open developer tools and try to debug.
+        On failure, utter an inhumane curse in frustration and then call the
+        teacher to help you debug.
       </>
     );
   }

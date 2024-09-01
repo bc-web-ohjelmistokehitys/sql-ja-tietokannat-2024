@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm recursive run dev"
+    "dev": "pnpm recursive --reporter append-only run dev"
   },
   "keywords": [],
   "author": "",
