@@ -1,5 +1,16 @@
 # Tech Radar React + Database version
 
+## Setting up the database
+
+`secrets/schema.sql` is a working SQL script that generates a schema and also random data for 100 different radars.
+
+**WARNING!** FOLLOWING THIS INSTRUCTION WILL DESTROY YOUR OWN PRE-EXISTING DATABASE, IF SUCH EXISTS WITH THE SAME NAME.
+
+Edit `server/.env` (look at development instructions below) to alter database name. By default it's `technologyradar`. Alter the database name also the following commands if you decide to change it.
+
+- `createdb technologyradar` (if not already exists)
+- `psql technologyradar < secrets/schema.sql`
+
 ## Development
 
 - `corepack enable`
@@ -13,16 +24,9 @@
 - `cp client/.env.local.example client/.env.local`
 - `pnpm run dev`
 
-If the browser doesn't open automatically when you run the last command, surf to http://localhost:3000/
+Open a browser and surf to http://localhost:5173/
 
-**If PHP stuff has already reserved port 3000, open `src/index.js`, find '3000' and switch it to be for example 4000, and then surf to http://localhost:4000/**
+The backend can be found at: http://localhost:4444/. It has two endpoints, for all the radars and a single radar (with radar id).
 
-This is not meant to work without user interference. We are missing a database and all the stuff inside it.
-
-## Database
-
-There is a `secrets` directory that holds the teacher's version of the database. If you missed the class, you can investigate it and copy-paste it to your database.
-
-- `createb techradar`
-- `psql techradar`
-- copy paste here.
+- http://localhost:4444/radar.json
+- http://localhost:4444/radar/1.json
