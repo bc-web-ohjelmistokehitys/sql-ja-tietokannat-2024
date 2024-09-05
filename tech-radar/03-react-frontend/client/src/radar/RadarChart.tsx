@@ -31,11 +31,21 @@ const RadarChart: FC<Props> = ({ data }) => {
       svg_id: id,
       scale,
       repo_url: data.url,
-      title: data.title,
+      title: data.name,
       date: data.date,
       quadrants: data.quadrants,
       rings: data.rings,
-      entries: data.entries,
+      entries: data.entries.map((entry) => {
+        return {
+          quadrant: entry.quadrant,
+          ring: entry.ring,
+          label: entry.name,
+          active: entry.active,
+          link: entry.url,
+          moved: entry.moved,
+          description: entry.description,
+        };
+      }),
     });
 
     return () => {

@@ -2,15 +2,14 @@ import "./App.css";
 import Header from "./Header";
 import MainContainer from "./MainContainer";
 import Footer from "./Footer";
-
-import Radar from "./radar/Radar";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <>
       <Header />
       <MainContainer>
-        <Radar />
+        <Outlet />
       </MainContainer>
       <Footer />
     </>

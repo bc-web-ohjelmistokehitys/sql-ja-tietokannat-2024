@@ -4,11 +4,15 @@ import { useQuery } from "@tanstack/react-query";
 import { getRadarData } from "../services/radar";
 import Spinner from "../Spinner";
 
-const Radar: FC = () => {
+type Props = {
+  id: string;
+};
+
+const Radar: FC<Props> = ({ id }) => {
   const { data, error, isLoading } = useQuery({
-    queryKey: ["radar"],
+    queryKey: ["radars", id],
     queryFn: async () => {
-      return getRadarData();
+      return getRadarData(id);
     },
   });
 
@@ -23,9 +27,9 @@ const Radar: FC = () => {
   if (error) {
     return (
       <>
-        <Spinner /> Error loading data. Open developer tools and try to debug.
-        On failure, utter an inhumane curse in frustration and then call the
-        teacher to help you debug.
+        <Spinner /> Error loading radar data. Open developer tools and try to
+        debug. On failure, utter an inhumane curse in frustration and then call
+        the teacher to help you debug.
       </>
     );
   }
@@ -34,7 +38,12 @@ const Radar: FC = () => {
     return <>No data for some reason...</>;
   }
 
-  return <RadarChart data={data} />;
+  return (
+    <section>
+      <h2>Radar: {data.name}</h2>
+      <RadarChart data={data} />
+    </section>
+  );
 };
 
 export default Radar;

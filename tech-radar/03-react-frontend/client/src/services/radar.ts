@@ -2,8 +2,22 @@ import ky from "ky";
 import * as d3 from "d3";
 
 export type RadarEntry = {
-  quadrant: 1 | 2 | 3 | 4;
-  ring: 1 | 2 | 3 | 4;
+  quadrant: 0 | 1 | 2 | 3;
+  ring: 0 | 1 | 2 | 3;
+  name: string;
+  active: boolean;
+  moved: 0 | -1 | 1 | 2;
+  url: string;
+  description?: string;
+};
+
+type ChartRadarEntry = {
+  quadrant: 0 | 1 | 2 | 3;
+  ring: 0 | 1 | 2 | 3;
+  moved: 0 | -1 | 1 | 2;
+  label: string;
+  link: string;
+  description?: string;
 };
 
 export type Quadrant = {
@@ -16,7 +30,7 @@ export type Ring = {
 };
 
 type RadarConfiguration = {
-  entries: RadarEntry[];
+  entries: ChartRadarEntry[];
   width?: number;
   height?: number;
   svg_id: string;
@@ -40,17 +54,27 @@ type RadarDefinition = Required<RadarConfiguration> & {
   font_family: string;
 };
 
-export type RadarData = {
-  title: string;
+export type BasicRadarData = {
+  id: string;
+  name: string;
   date: string;
+};
+
+export type RadarData = BasicRadarData & {
   quadrants: Quadrant[];
   rings: Ring[];
   entries: RadarEntry[];
   url: string;
 };
 
-export const getRadarData = async (): Promise<RadarData> => {
+export const getAllRadars = async (): Promise<BasicRadarData[]> => {
   return ky.get<RadarData>(`${import.meta.env.VITE_API}/radar.json`).json();
+};
+
+export const getRadarData = async (id: string): Promise<RadarData> => {
+  return ky
+    .get<RadarData>(`${import.meta.env.VITE_API}/radar/${id}.json`)
+    .json();
 };
 
 const getRadarDefinition = (config: RadarConfiguration): RadarDefinition => {
@@ -463,6 +487,12 @@ export function radar_visualization(conf: RadarConfiguration) {
           .data(segmented[quadrant][ring])
           .enter()
           .append("a")
+          .on("click", (e, d) => {
+            console.log("E", e, d);
+
+            e.preventDefault();
+            return false;
+          })
           .attr(
             "href",
             (d, i) => (d.link ? d.link : "#") // stay on same page if no link was provided

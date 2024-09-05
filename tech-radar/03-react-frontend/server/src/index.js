@@ -2,7 +2,7 @@ import "dotenv/config";
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 import pg from "pg";
-import { createRadar } from "./radar.js";
+import { createRadar, getAllRadars } from "./radar.js";
 
 const { Client } = pg;
 const client = new Client();
@@ -20,8 +20,23 @@ await server.register(cors, {
 server.get("/", async () => ({ hello: "world" }));
 
 server.get("/radar.json", async () => {
-  const radar = await createRadar(client);
-  return radar;
+  const radars = await getAllRadars(client);
+
+  return radars;
+});
+
+server.get("/radar/:id.json", async (request, response) => {
+  const { id } = request.params;
+
+  try {
+    const radar = await createRadar(client, id);
+    return radar;
+  } catch (e) {
+    // eslint-disable-next-line no-console -- because we want to see.
+    console.error(e);
+
+    return response.code(404).send({ error: e.message });
+  }
 });
 
 try {
