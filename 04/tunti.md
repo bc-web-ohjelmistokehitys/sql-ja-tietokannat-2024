@@ -1,6 +1,6 @@
 # tunti 4
 
-Tunnin agenda oli "terminaali on elämä". Totesimme, että tosielämässä "oikea" tuotannossa oleva tietokanta ei koskaan asu kotikoneella.
+Tunnin agenda oli "terminaali on elämä". Totesimme, että tosielämässä "oikea" tuotannossa oleva tietokanta ei koskaan asu kotikoneella, ja useimmiten tehtävänämme on käsitellä olemassaolevaa / toisten tekemää kantaa vs. kirjoittaa uusia taulurakenteita. SELECT on 1000% yleisempää kuin UPDATE / INSERT.
 
 - `cd ~` - menemme kotikansioon
 - `pwd` - missä olen juuri nyt?
