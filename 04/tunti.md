@@ -87,3 +87,11 @@ Huomasimme, että tietokanta on "vähän hidas". Korjasimme asian indeksillä, e
 - https://www.postgresql.org/docs/current/sql-createindex.html
 
 Opimme, että indeksit voivat joko hidastaa tai nopeuttaa. Opettaja onnistui jumittamaan koko masiinan lisäämällä indeksi, mikä oli yllättävää. Hän ihmetteli asiaa kovasti, mutta osasi sitten kuitenkin tehdä vähän paremman indeksin. LIKE-hakua hän ei saanut toimimaan, vaikka "se oli toiminut kotona", ja hän selvittää asian ensi tunniksi.
+
+## Tehtävä
+
+Kirjoita kysely, joka hakee passin UUID:llä passin tiedot, henkilön olennaiset tiedot ja passikuvan. Skannaamme rajalla maahan saapujan passin, ja haluamme tietää, onko henkilö olemassa ja oikea.
+
+Puhuimme UUID:stä ylipäätään, ja sen tietoturvasta vs. juokseva numero (juoksevan numeron avulla koko kannan / taulun voi juosta läpi, jos teemme vahingossa tietoturva-aukon. UUID:tä ei voi arvata.)
+
+- https://en.wikipedia.org/wiki/Universally_unique_identifier
