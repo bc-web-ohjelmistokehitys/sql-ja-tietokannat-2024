@@ -15,12 +15,15 @@ import { encrypt, hashPassword } from "scripts/secrets.js";
 const args = parseArgs({
   options: {
     people: { type: "string", default: "100" },
-    batchSize: { type: "string", default: "10" },
+    batchSize: { type: "string", default: "20" },
   },
 });
 
 const NUMBER_OF_PEOPLE = parseInt(args.values.people!, 10);
 const BATCH_SIZE = parseInt(args.values.batchSize!, 10);
+
+console.log(`WELCOME TO FAKE PERSON CREATOR!`);
+console.log(`BATCH SIZE: ${BATCH_SIZE}`);
 
 const getUrl = (n: number): string => {
   const padded = n.toString().padStart(6, "0");
@@ -50,7 +53,11 @@ type Person = {
 const insertPerson = async (person: Person) => {
   const pimageId = faker.number.int({ min: 1, max: 10000 });
 
+  // const p0 = performance.now();
   const password = await hashPassword(faker.internet.password());
+  // const p1 = performance.now();
+
+  // console.log(p1 - p0, "cost of hashing password");
 
   const ret = await db
     .insertInto("person")

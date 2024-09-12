@@ -12,8 +12,8 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0
       '@pekkis/finnish-name-randomizer':
-        specifier: npm:@jsr/pekkis__finnish-name-randomizer@^0.0.4
-        version: '@jsr/pekkis__finnish-name-randomizer@0.0.4'
+        specifier: npm:@jsr/pekkis__finnish-name-randomizer@^1.0
+        version: '@jsr/pekkis__finnish-name-randomizer@1.0.6'
       bcrypt:
         specifier: ^5.1.1
         version: 5.1.1
@@ -217,8 +217,8 @@ packages:
   '@jsr/iv__alea@1.1.0':
     resolution: {integrity: sha512-pONv57m4zCfAaG7iDBSJOejtL49RLac64X9UjsEJexFPD4osISfeGCY/aYwbdOwR/AQ5EyrT9Dze7U3ScwvS5g==, tarball: https://npm.jsr.io/~/11/@jsr/iv__alea/1.1.0.tgz}
 
-  '@jsr/pekkis__finnish-name-randomizer@0.0.4':
-    resolution: {integrity: sha512-pW/Jp+Nocw+UomK5Fwl/hGXBYqcOzImbStJfWQSZfhsqCiMHtJJ8O58GoIL42x/qoHXIbsNhVc1WK4R6nTuHwQ==, tarball: https://npm.jsr.io/~/11/@jsr/pekkis__finnish-name-randomizer/0.0.4.tgz}
+  '@jsr/pekkis__finnish-name-randomizer@1.0.6':
+    resolution: {integrity: sha512-K0T6b+XMA2QcLgiS6PeKdjtnEBgGwdsfJgaaY75qEcl8ChqF/JUzwu4r9EBQN9dQ/zKR2Hpy0rplJADyqgSBMQ==, tarball: https://npm.jsr.io/~/11/@jsr/pekkis__finnish-name-randomizer/1.0.6.tgz}
 
   '@mapbox/node-pre-gyp@1.0.11':
     resolution: {integrity: sha512-Yhlar6v9WQgUp/He7BdgzOz8lqMQ8sU+jkCq7Wx8Myc5YFJLbEe7lgui/V7G1qB1DJykHSGwreceSaD60Y0PUQ==}
@@ -848,7 +848,7 @@ snapshots:
 
   '@jsr/iv__alea@1.1.0': {}
 
-  '@jsr/pekkis__finnish-name-randomizer@0.0.4':
+  '@jsr/pekkis__finnish-name-randomizer@1.0.6':
     dependencies:
       '@jsr/iv__alea': 1.1.0
 
