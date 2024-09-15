@@ -38,7 +38,13 @@ Pekkiksen yksinkertaiset ohjeet (googleta aiheet)
 - `ssh-add` - otetaan identiteetti käyttöön.
 - `ssh-copy-id <tunnus>@<palvelin>` - ssh-copy-id:llä identiteetti voidaan kopioida palvelimelle niin ettei ssh aina kysele salasanaa.
 
-Githubin ohjeiden mukaan kannattaa lisätä ssh-avain myös githubiin omalla ajalla!
+Sen jälkeen, kun "hakkeri" oli pyynnöstä ja rohkaistuna tuhonnut kaiken datan ja palautimme sen, suljin PostgreSQL:n käyttämän portin palvelimen palomuurista. Tietoturvasyistä tietokantapalvelimia ei pidetä oikeasti avoinna maailmalle (vrt. Vastaamo).
+
+- `ssh -L 5432:localhost:5432 oppilas@hunajapurkki.pekkis.eu`
+
+Sen jälkeen pääsimme tietokantaan silti käsiksi joko suoraan etäpalvelimelta SSH-yhteyden avulla tai [SSH-tunnelin](https://www.ssh.com/academy/ssh/tunneling-example) avulla "kotikoneelta".
+
+Githubin ohjeiden mukaan kannattaa lisätä ssh-avain myös githubiin omalla ajalla! Samoin näihin kaikkiin SSH-aiheisiin kannattaa perehtyä, ja niitä kannattaa harjoitella. Ne ovat kaikki TOSI olennaisia taitoja työelämässä.
 
 ## SQL-kyselyitä
 
@@ -71,6 +77,13 @@ Uploadasin tietokannan Google Driveen. Isoja binääritiedostoja ei voi säilö�
 Voit ladata kannan sen ja unzipata ja laittaa omalle paikalliselle serverille.
 
 `https://drive.google.com/file/d/1ffawFMhvVinBlLcG8pX1vsjAzYCFlSTk/view`
+
+## Aggregaattifunktiot
+
+Käytimme `COUNT()` aggregaattifunktiota. Silloin `GROUP BY` kohdasta tulee merkityksellinen.
+
+Opettaja yritti käyttää AVERAGE() funktiota, mutta se ei toiminut päivämääräkentässä,
+eikä rekursiivisesti (`AVERAGE(COUNT())`). Opettaja epäili omaa mielenterveyttään ja osaamistaan. Luulen, että kysymys oli osaamisesta, ja tarvitsemme alakyselyä (subquery) jota emme vielä osaa käyttää!
 
 ## EXPLAIN
 

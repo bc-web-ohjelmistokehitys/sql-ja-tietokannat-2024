@@ -38,9 +38,17 @@ CREATE INDEX idx_person_last_name ON person(last_name, first_name) INCLUDES (bir
 SELECT FROM person WHERE last_name LIKE 'F%';
 
 
+/* aggregaatti-funktio ja GROUP BY */
 
 SELECT last_name, COUNT(last_name) as lukumaara
 FROM person
 GROUP BY last_name
-ORDER BY lukumaara
+ORDER BY lukumaara DESC
+LIMIT 20;
+
+SELECT first_name, COUNT(first_name) as lukumaara
+FROM person
+WHERE sex = 'f'
+GROUP BY first_name
+ORDER BY lukumaara DESC
 LIMIT 20;
