@@ -52,6 +52,12 @@ Askel askeleelta edeten, hitaasti mutta varmasti, saavutimme seuraavan lopputulo
 
 - [koodi](../example-applications/border-check/)
 
+Käyttämämme kirjastot ja työkalut:
+
+- [tsx](https://tsx.is/)
+- [pg](https://node-postgres.com/)
+- [fastify](https://fastify.dev/)
+
 ## mamp, docker et al
 
 Jossain vaiheessa puhuimme MAMPista. Sanoin, että siihen ei törmää työelämässä, ja että asennettuamme MAMPin, tehtävänämme on "oppia sieltä ulos".
