@@ -51,3 +51,17 @@ Otimme käyttöön Gitin, koska koodi tykkää elää versionhallinnassa.
 Askel askeleelta edeten, hitaasti mutta varmasti, saavutimme seuraavan lopputuloksen:
 
 - [koodi](../example-applications/border-check/)
+
+## mamp, docker et al
+
+Jossain vaiheessa puhuimme MAMPista. Sanoin, että siihen ei törmää työelämässä, ja että asennettuamme MAMPin, tehtävänämme on "oppia sieltä ulos".
+
+En ollut varmaan ihan reilu MAMPille. Tähdennän, että sama "ulos oppiminen" pätee oikeastaan kaikkeen, mitä tässä opetellaan, yhtä lailla omiin opetuksiini. Itsekin olen puhunut paljon "mustista laatikoista" (black box), ja MAMP on tällainen musta laatikko. Olen myös itse aika syrjässä Wordpress / PHP - maailmasta, joten MAMP voi jopa olla siellä yleisempi. [Local](https://localwp.com/) jutusta olen kuullut, ja tiedän, että jotkut ovat sitä käyttäneet.
+
+Mustat laatikot ovat hyviä ja pahoja, koska ne sallivat meidän aloittaa _jostakin_, ilman että meidän pitää ymmärtää kaikki. MAMP piilottaa allensa [PHP](https://php.net/):n, [MySQL](https://mariadb.com/):n, [Apachen](https://httpd.apache.org/) ja / tai [Nginxin](https://nginx.org/en/) (Nginx korvasi apachen omassa käytössäni joskus ~2010-2011, enkä ole sen jälkeen Apacheen juuri törmännyt).
+
+"Ulos oppimisella" tarkoitan sitä, että tehtävänänne on lopulta oppia ymmärtämään kaikki nämä erilliset palaset, ja työskennellä niiden kanssa _ilman apupyöriä_. Näitä kaikkia ei välttämättä tarvitse suoraan työelämässä, mutta ne tulee ymmärtää pärjätäkseen (mitä ne ovat, miten niiden kanssa järkeillään). Vaikka käyttäisi paketoituja palveluja, jotka piilottavat monimutkaisuuksia, niiden ymmärtäminen auttaa tosi paljon.
+
+Oikeissa projekteissa PHP:n, Apachen, MySQL:n, PostgreSQL:n ja monta muuta riippuvuutta hoidetaan usein esimerkiksi [Docker](https://www.docker.com/)-nimisellä systeemillä. Se vasta on tosi monimutkainen himmeli. Kannattaa muistaa se, koska se tulee eteen myöhemmin. Mutta ensin saatte rauhassa oppia kävelemään, ja vasta kun kävely sujuu, aletaan juosta! :)
+
+JavaScript-fronttikoodaus on usein helpompaa, koska siinä riittää Node ja NPM. Mutta heti, jos tehdään jotain palvelinpään juttua, asiat muuttuvat monimutkaisiksi. Yhdellä kehittäjällä on koneellaan monta projektia, jotka kaikki käyttävät eri ohjelmistoja, ja eri ohjelmistojen eri versioita. Tämän kaaoksen hallitseminen on tosielämässä tosi vaikeaa, ja esimerkiksi pelkkä `brew` ei siihen hyvin riitä.
