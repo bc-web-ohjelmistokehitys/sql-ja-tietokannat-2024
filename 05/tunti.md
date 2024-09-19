@@ -57,6 +57,7 @@ Käyttämämme kirjastot ja työkalut:
 - [tsx](https://tsx.is/)
 - [pg](https://node-postgres.com/)
 - [fastify](https://fastify.dev/)
+- [JSON](https://www.json.org/json-en.html) on webin de facto standardi tiedonsiirtomuoto. Joskus käytettiin / käytetään [XML](https://fi.wikipedia.org/wiki/XML):ää, mutta ei onneksi usein. Käänny toiseen suuntaan ja juokse, jos näet sitä.
 
 ## mamp, docker et al
 
