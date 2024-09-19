@@ -51,6 +51,11 @@ Otimme käyttöön Gitin, koska koodi tykkää elää versionhallinnassa.
 Askel askeleelta edeten, hitaasti mutta varmasti, saavutimme seuraavan lopputuloksen:
 
 - [koodi](../example-applications/border-check/)
+- `npm dev`
+- [avaa selain](http://localhost:5678)
+- ![kuvaruutukaappaus](<Screenshot 2024-09-19 at 22.29.55.png>)
+
+Näyttääkö JSON selaimessasi rumalta? [JSON formatter](https://chromewebstore.google.com/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa) auttaa.
 
 Käyttämämme kirjastot ja työkalut:
 
