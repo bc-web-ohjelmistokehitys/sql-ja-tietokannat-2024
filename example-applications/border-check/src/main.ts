@@ -54,12 +54,14 @@ fastify.get<{
   http://127.0.0.1:5678/person?page=2&sortBy=last_name LIMIT 1; DROP TABLE person CASCADE;--
   */
 
-  const sql = `SELECT id, first_name, last_name FROM person
-    ORDER BY id
-    LIMIT 100 OFFSET 0
+  const sql = `SELECT
+    id, first_name, last_name
+    FROM person
+    ORDER BY ${sortBy} ASC
+    LIMIT 100 OFFSET $1
   `;
 
-  const result = await client.query(sql);
+  const result = await client.query(sql, [offset]);
 
   reply.send(result.rows);
 });
