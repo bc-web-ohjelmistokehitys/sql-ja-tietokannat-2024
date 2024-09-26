@@ -17,10 +17,49 @@ const fastify = Fastify({
   logger: true,
 });
 
-fastify.get("/", async (request, reply) => {
-  const result = await client.query(
-    "SELECT * FROM person ORDER BY id LIMIT 1000"
-  );
+fastify.get<{
+  Params: {
+    id: string;
+  };
+}>("/person/:id", async (request, reply) => {
+  const id = request.params.id;
+
+  const sql = `SELECT
+    id, first_name, last_name
+    FROM person
+    WHERE id = $1
+  `;
+
+  const result = await client.query(sql, [id]);
+
+  reply.send(result.rows[0]);
+});
+
+// create new person
+fastify.post("/person", () => {});
+
+fastify.get<{
+  Querystring: {
+    page: string;
+    sortBy: string;
+  };
+}>("/person", async (request, reply) => {
+  const page = request.query.page || "1";
+
+  const offset = (parseInt(page, 10) - 1) * 100;
+
+  const sortBy = request.query.sortBy || "id";
+
+  /*
+  http://127.0.0.1:5678/person?page=2&sortBy=last_name LIMIT 1; DROP TABLE person CASCADE;--
+  */
+
+  const sql = `SELECT id, first_name, last_name FROM person
+    ORDER BY id
+    LIMIT 100 OFFSET 0
+  `;
+
+  const result = await client.query(sql);
 
   reply.send(result.rows);
 });
