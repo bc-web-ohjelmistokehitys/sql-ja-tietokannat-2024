@@ -5,13 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx --watch src/main.ts"
+    "dev": "tsx --watch src/main.ts",
+    "kysely-codegen": "npm exec kysely-codegen"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@types/pg": "^8.11.10",
+    "dotenv": "^16.4.5",
+    "kysely-codegen": "^0.16.8",
     "tsx": "^4.19.1",
     "typescript": "^5.6.2"
   },
