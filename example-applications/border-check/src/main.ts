@@ -22,16 +22,20 @@ const db = new Kysely<DB>({
 
 console.log("HUHHAHHEI", process.env.DATABASE_URL);
 
+/*
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
   // database: "suomioy",
 });
+
 
 await client.connect();
 
 // vasta kun yhteys on muodostunut
 
 console.log("connettore!");
+
+*/
 
 const fastify = Fastify({
   logger: true,
@@ -84,10 +88,6 @@ fastify.get<{
 
   const sortBy = request.query.sortBy || "id";
 
-  /*
-  http://127.0.0.1:5678/person?page=2&sortBy=last_name LIMIT 1; DROP TABLE person CASCADE;--
-  */
-
   const result = await db
     .selectFrom("person")
     .select(["id", "first_name", "last_name"])
@@ -96,12 +96,19 @@ fastify.get<{
     .limit(100)
     .execute();
 
+  return result;
+
+  /*
   return result.toSorted((a, b) => {
     return a.last_name.localeCompare(b.last_name);
   });
+  */
   // sama asia kuin return ylemmällä rivillä -> reply.send(result);
 
   /*
+
+  // http://127.0.0.1:5678/person?page=2&sortBy=last_name LIMIT 1; DROP TABLE person CASCADE;--
+
   const sql = `SELECT
     id, first_name, last_name
     FROM person
