@@ -4,21 +4,8 @@
 import "dotenv/config";
 
 import Fastify from "fastify";
-import pg from "pg";
 
-import { Kysely, PostgresDialect } from "kysely";
-import { DB } from "kysely-codegen";
-// import { Pool } from "pg";
-
-const { Client, Pool } = pg;
-
-const db = new Kysely<DB>({
-  dialect: new PostgresDialect({
-    pool: new Pool({
-      connectionString: process.env.DATABASE_URL,
-    }),
-  }),
-});
+import { db } from "./db";
 
 console.log("HUHHAHHEI", process.env.DATABASE_URL);
 
