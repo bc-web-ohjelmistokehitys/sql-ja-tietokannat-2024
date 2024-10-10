@@ -4,6 +4,10 @@
 - Kävimme läpi tekoälyn kanssa sparraamaani [listaa tietokantojen opettamisesta](./ai.md)
 - Lupasin laittaa linkkejä seuraaviin / unohtamiini asioihin.
 
+- https://github.com/pekkis/iltk/tree/development
+
+Development bränchissä se, mitä itse koodasin tänään.
+
 ## mitä seuraavaksi?
 
 - Harjoitelkaa! :-)
