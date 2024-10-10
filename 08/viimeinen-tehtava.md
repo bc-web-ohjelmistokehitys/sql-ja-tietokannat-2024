@@ -9,6 +9,7 @@
 
 ## some example projects:
 
+- roll your own! anything goes!
 - just develop the movie database a bit forwards.
 - slideshow application
   - google slides
